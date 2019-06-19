@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Últimas postagens</h1>
+	
+	{% if posts %}
+	<form method="POST" action="/blog/pesquisar">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" name="pesquisa" placeholder="Pesquisar">
+			<div class="input-group-append">
+				<button class="btn btn-info" type="submit">Pesquisar</button>
+			</div>
+		</div>
+		<hr>
+	</form>
+	{% for p in posts %}
+		<a href="/blog/{{ p.id }}">
+			<h1>{{ p.titulo }}</h1>
+			<img src="{{ p.miniatura }}"/>
+			{{ p.conteudo }}
+			{{ p.autor }}
+		</a>
+
+		<hr />
+	{% endfor %}
+	
+{% endif %}
+{% endblock %}
